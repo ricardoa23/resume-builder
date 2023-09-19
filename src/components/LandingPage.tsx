@@ -3,8 +3,8 @@ import React from "react";
 const LandingPage = () => {
   return (
     <>
-      <h1>Resume Builder</h1>
-      <p className="introduction">
+      <h1 className="bg-blue-400 text-center">Resume Builder</h1>
+      <p className="introduction indent-5">
         Welcome to my single-page web application, designed to simplify and
         elevate your resume creation process. I've crafted this platform to
         empower you to create standout resumes effortlessly. Simply input your
