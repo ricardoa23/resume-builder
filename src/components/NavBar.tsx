@@ -4,18 +4,17 @@ const NavBar = () => {
     const navItems = [
         { label: "How to get started", href: "#" },
         { label: "Example Templates", href: "#" },
-        { label: "Improve your resume", href: "#" },
         { label: "Back to Portfolio Website", href: "www.worldofrick.com" }
     ];
 
     return (
         <>
-            <nav className="flex justify-around bg-secondary">
+            <nav className="flex justify-around bg-transparent">
                 <div className="bg-black text-white">Logo Place Holder</div>
                 <div className="flex-grow"></div>
-                <ul className="flex justify-evenly">
+                <ul className="flex justify-evenly space-x-2">
                     {navItems.map((item, index) => (
-                        <li key={index} className="border border-black p-2 hover:bg-accent">
+                        <li key={index} className=" p-3 hover:bg-accent text-accent hover:text-white rounded-full">
                             <a href={item.href} className="block">
                                 {item.label}
                             </a>

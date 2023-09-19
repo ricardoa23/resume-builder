@@ -3,8 +3,8 @@ import React from "react";
 const LandingPage = () => {
   return (
     <>
-      <h1 className="bg-blue-400 text-center">Resume Builder</h1>
-      <p className="introduction indent-5">
+      <h1 className="bg-secondary text-center">Resume Builder</h1>
+      <p className="introduction indent-5 p-5">
         Welcome to my single-page web application, designed to simplify and
         elevate your resume creation process. I've crafted this platform to
         empower you to create standout resumes effortlessly. Simply input your
@@ -17,7 +17,7 @@ const LandingPage = () => {
       </p>
 
       <h2>How it Works</h2>
-      <p className="how-it-works">
+      <p className="how-it-works indent-5 p-5">
         Curious about how my platform transforms your work history into a
         compelling resume? It's simple. After you input your details, the system
         leverages OpenAI's API to analyze and improve the bullet points in your
@@ -29,7 +29,7 @@ const LandingPage = () => {
       </p>
 
       <h2>Technologies Used</h2>
-      <p className="tech-used">
+      <p className="tech-used p-5 indent-5">
         My web application was meticulously crafted using cutting-edge
         technologies to provide you with a seamless experience. The frontend is
         built with React and TypeScript, offering a dynamic and responsive user
@@ -41,32 +41,33 @@ const LandingPage = () => {
         stack, I deliver a user-friendly and high-performance resume builder to
         help you stand out in your job search.
       </p>
+      <button className="bg-accent rounded-lg p-2 text-white">
+        Get Started
+      </button>
+      <div className="pt-6 mt-10">
+        <h2>Disclaimer</h2>
+        <p>
+          To unlock the full potential of my application, including the bullet
+          point improvement feature powered by OpenAI's API, I kindly request
+          that users submit an approval request. This process helps maintain the
+          integrity of my service and prevents misuse of API calls. However,
+          please note that even without approval, my application remains fully
+          functional, with the exception of the OpenAI-powered enhancements.
+        </p>
 
-      {/* button */}
-      <button>Get Started</button>
-
-      <h2>Disclaimer</h2>
-      <p>
-        To unlock the full potential of my application, including the bullet
-        point improvement feature powered by OpenAI's API, I kindly request that
-        users submit an approval request. This process helps maintain the
-        integrity of my service and prevents misuse of API calls. However,
-        please note that even without approval, my application remains fully
-        functional, with the exception of the OpenAI-powered enhancements.
-      </p>
-
-      <h2>Privacy Policy</h2>
-      <p>
-        Rest assured, your privacy and data security are of utmost importance to
-        me. I want to reassure you that no personal information you provide will
-        be stored long-term or used for any purposes beyond the immediate scope
-        of generating your resume. I have designed my application with safety
-        and privacy in mind, implementing robust measures to protect your data
-        throughout your interaction with my platform. Thank you for choosing my
-        service. Your trust in me is greatly appreciated, and I am committed to
-        delivering a secure and efficient experience while prioritizing your
-        privacy at every step.it
-      </p>
+        <h2>Privacy Policy</h2>
+        <p>
+          Rest assured, your privacy and data security are of utmost importance
+          to me. I want to reassure you that no personal information you provide
+          will be stored long-term or used for any purposes beyond the immediate
+          scope of generating your resume. I have designed my application with
+          safety and privacy in mind, implementing robust measures to protect
+          your data throughout your interaction with my platform. Thank you for
+          choosing my service. Your trust in me is greatly appreciated, and I am
+          committed to delivering a secure and efficient experience while
+          prioritizing your privacy at every step.it
+        </p>
+      </div>
     </>
   );
 };
