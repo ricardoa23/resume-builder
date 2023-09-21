@@ -8,7 +8,8 @@ function App() {
 
   return (
     <>
-    <AccessModal></AccessModal>
+    {/* Commented to prevent annoyance */}
+    {/* <AccessModal></AccessModal>  */}
     <NavBar></NavBar>
     <LandingPage></LandingPage>
     </>
