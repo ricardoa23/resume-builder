@@ -1,8 +1,15 @@
-dialog { 
+* {
+    font-family: "Work Sans", sans-serif;
+}
 
+dialog { 
+    height: 80vh;
+    width: 70vw;
+    background: white;
+    background-image: radial-gradient(ellipse at center, white, #0077B6 );
 }
 
 dialog::backdrop {
-    background-color: rgba(0, 0, 0, 0.7);  /* semi-transparent black */
-    backdrop-filter: blur(5px);            /* apply blur */
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px); 
   }
