@@ -1,8 +1,8 @@
 // tailwind.config.js
 module.exports = {
   mode: 'jit',
-  purge: ['./index.html', './src/**/*.{cjs,vue,js,ts,jsx,tsx}'],
-  darkMode: false,
+  content: ['./index.html', './src/**/*.{cjs,vue,js,ts,jsx,tsx}'],
+  media: false,
   theme: {
     extend: {
       colors: {

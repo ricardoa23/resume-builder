@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 interface User {
   name: string;
@@ -12,6 +12,31 @@ const AccessModal = () => {
     email: "",
     isPotentialEmployer: false,
   });
+
+
+
+
+
+  useEffect(() => {
+    const modalOpen = document.querySelector<HTMLDialogElement>("[data-open-modal]");
+    const modalClose = document.querySelector("[data-close-modal]");
+
+    const timer = setTimeout(() => {
+      modalOpen?.showModal();
+    }, 3000);
+
+    const handleClose = () => {
+      modalOpen?.close();
+    };
+
+    modalClose?.addEventListener("click", handleClose);
+
+    return () => {
+      clearTimeout(timer);
+      modalClose?.removeEventListener("click", handleClose);
+    };
+  }, []);
+
 
   const composeEmail = () => {
     const userType = user.isPotentialEmployer
@@ -27,7 +52,7 @@ const AccessModal = () => {
 
   return (
     <>
-      <div className="">
+      <dialog data-open-modal>
         <h1>Request Access</h1>
         <p>
           To experience the full application you'll need access. request access
@@ -55,7 +80,9 @@ const AccessModal = () => {
         />
 
         <button onClick={composeEmail}>Request Access</button>
-      </div>
+        
+        <button data-close-modal className="border border-black bg-accent" >No thanks I just want to look around</button>
+      </dialog>
     </>
   );
 };
