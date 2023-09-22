@@ -9,7 +9,7 @@ function App() {
   return (
     <>
     {/* Commented to prevent annoyance */}
-    {/* <AccessModal></AccessModal>  */}
+    <AccessModal></AccessModal> 
     <NavBar></NavBar>
     <LandingPage></LandingPage>
     </>

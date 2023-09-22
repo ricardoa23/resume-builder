@@ -3,71 +3,73 @@ import React from "react";
 const LandingPage = () => {
   return (
     <>
-      <h1 className="bg-secondary text-center">Resume Builder</h1>
-      <p className="introduction indent-5 p-5">
-        Welcome to my single-page web application, designed to simplify and
-        elevate your resume creation process. I've crafted this platform to
-        empower you to create standout resumes effortlessly. Simply input your
-        personal information and work history, and our integration with OpenAI's
-        API takes care of the rest. The magic happens when I refine your work
-        history's bullet points, enhancing the quality of your resume. With just
-        a few clicks, you can generate a professionally polished resume in DOCX
-        format. Say goodbye to tedious formatting, and hello to your future
-        career success with my resume builder.{" "}
-      </p>
+      <div className="bg-white h-screen w-screen snap-y snap-mandatory overflow-scroll">
+        {/* Hero Section */}
+        <div className="h-screen bg-red-500 flex items-center justify-center snap-start">
+          <h1 className="text-white text-8xl">Resume Builder</h1>
+        </div>
 
-      <h2>How it Works</h2>
-      <p className="how-it-works indent-5 p-5">
-        Curious about how my platform transforms your work history into a
-        compelling resume? It's simple. After you input your details, the system
-        leverages OpenAI's API to analyze and improve the bullet points in your
-        work history. This means your resume not only looks polished but also
-        communicates your achievements and skills effectively. My platform
-        streamlines the entire process, ensuring that you get a high-quality
-        resume in no time. Experience the future of resume building with ease
-        and efficiency.
-      </p>
+        {/* Introduction Section */}
+        <div className="relative h-screen w-screen bg-gradient-to-r from-primary to-transparent snap-start">
+          <p className="absolute left-16 top-1/3 w-1/2 text-2xl">
+            Welcome to my single-page web application, designed to simplify and
+            elevate your resume creation process. I've crafted this platform to
+            empower you to create standout resumes effortlessly. Simply input
+            your personal information and work history, and our integration with
+            OpenAI's API takes care of the rest. The magic happens when I refine
+            your work history's bullet points, enhancing the quality of your
+            resume. With just a few clicks, you can generate a professionally
+            polished resume in DOCX format. Say goodbye to tedious formatting,
+            and hello to your future career success with my resume builder.
+          </p>
+        </div>
 
-      <h2>Technologies Used</h2>
-      <p className="tech-used p-5 indent-5">
-        My web application was meticulously crafted using cutting-edge
-        technologies to provide you with a seamless experience. The frontend is
-        built with React and TypeScript, offering a dynamic and responsive user
-        interface. On the backend, I rely on Node.js to handle data processing
-        and API interactions. Leveraging OpenAI's API, I enhance the quality of
-        your resume's content. To generate DOCX files, I use a powerful document
-        library. Initially, I employed Vite to accelerate the development
-        process, ensuring my application is fast and efficient. With this tech
-        stack, I deliver a user-friendly and high-performance resume builder to
-        help you stand out in your job search.
-      </p>
-      <button className="bg-accent rounded-lg p-2 text-white">
+        {/* How it Works Section */}
+        <div className="relative h-screen w-screen bg-gradient-to-l from-primary to-transparent snap-start">
+          <h2 className="text-center text-6xl py-9">How it Works</h2>
+          <p className="absolute right-16 top-1/3 w-1/2 text-right text-2xl">
+            Curious about how my platform transforms your work history into a
+            compelling resume? It's simple. After you input your details, the
+            system leverages OpenAI's API to analyze and improve the bullet
+            points in your work history. This means your resume not only looks
+            polished but also communicates your achievements and skills
+            effectively. My platform streamlines the entire process, ensuring
+            that you get a high-quality resume in no time. Experience the future
+            of resume building with ease and efficiency.
+          </p>
+        </div>
+
+        {/* Technologies Used Section */}
+        <div className="relative h-screen w-screen bg-gradient-to-r from-primary to-transparent snap-start">
+          <h2 className="text-center text-5xl py-9">Technologies Used</h2>
+          <p className="absolute left-16 top-1/3 w-1/2 text-2xl">
+            My web application was meticulously crafted using cutting-edge
+            technologies to provide you with a seamless experience. The frontend
+            is built with React and TypeScript, offering a dynamic and
+            responsive user interface. On the backend, I rely on Node.js to
+            handle data processing and API interactions. Leveraging OpenAI's
+            API, I enhance the quality of your resume's content. To generate
+            DOCX files, I use a powerful document library. Initially, I employed
+            Vite to accelerate the development process, ensuring my application
+            is fast and efficient. With this tech stack, I deliver a
+            user-friendly and high-performance resume builder to help you stand
+            out in your job search.
+          </p>
+        </div>
+        <div className="relative h-screen w-screen bg-primary snap-start flex flex-col items-center justify-around">
+          <h2 className="text-5xl ">Let's build you a resume </h2>
+          <button className="bg-accent rounded-lg p-2 text-white mx-auto block mt-6">
+            Get Started
+          </button>
+          <div></div>
+        </div>
+      </div>
+      {/* <button className="bg-accent rounded-lg p-2 text-white mx-auto block mt-6">
         Get Started
       </button>
-      <div className="pt-6 mt-10">
-        <h2>Disclaimer</h2>
-        <p>
-          To unlock the full potential of my application, including the bullet
-          point improvement feature powered by OpenAI's API, I kindly request
-          that users submit an approval request. This process helps maintain the
-          integrity of my service and prevents misuse of API calls. However,
-          please note that even without approval, my application remains fully
-          functional, with the exception of the OpenAI-powered enhancements.
-        </p>
-
-        <h2>Privacy Policy</h2>
-        <p>
-          Rest assured, your privacy and data security are of utmost importance
-          to me. I want to reassure you that no personal information you provide
-          will be stored long-term or used for any purposes beyond the immediate
-          scope of generating your resume. I have designed my application with
-          safety and privacy in mind, implementing robust measures to protect
-          your data throughout your interaction with my platform. Thank you for
-          choosing my service. Your trust in me is greatly appreciated, and I am
-          committed to delivering a secure and efficient experience while
-          prioritizing your privacy at every step.it
-        </p>
-      </div>
+      <div className="pt-6 mt-10 px-8">
+        {/* ... Disclaimer and Privacy Policy sections */}
+      {/* </div>  */}
     </>
   );
 };
