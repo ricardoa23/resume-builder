@@ -4,7 +4,13 @@ import { UserProfile } from '../utilities/userProfile'
 import { WorkHistory } from '../utilities/workHistory'
 
 const GeneralInformation = () => {
-
+// TODO: Add a form to collect the following information:
+// firstName
+// lastName
+// email
+// phone
+// TODO: Add logic to use the input from the form to update the user profile
+//TODO: Add a Next button to move on to the Work History
   
 
 
@@ -24,7 +30,7 @@ const GeneralInformation = () => {
       <input type="text"  />
       {/* phone */}
       <p>Phone Number (Optional)</p>
-      <input type="text"  />
+      <input type="text"  />                   
     </div>
     </>
   )
