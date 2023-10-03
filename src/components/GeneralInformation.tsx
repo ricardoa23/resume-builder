@@ -1,39 +1,56 @@
-import  React from 'react'
-import { resumeData } from '../utilities/resumeData'
-import { UserProfile } from '../utilities/userProfile'
-import { WorkHistory } from '../utilities/workHistory'
+import React, { useState } from 'react';
+import { UserProfile } from '../utilities/userProfile';
 
-const GeneralInformation = () => {
-// TODO: Add a form to collect the following information:
-// firstName
-// lastName
-// email
-// phone
-// TODO: Add logic to use the input from the form to update the user profile
-//TODO: Add a Next button to move on to the Work History
-  
+const GeneralInformation: React.FC = () => {
+  const [firstName, setFirstName] = useState<string>('');
+  const [lastName, setLastName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [phone, setPhone] = useState<string>('');
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    switch (name) {
+      case 'firstName':
+        setFirstName(value);
+        break;
+      case 'lastName':
+        setLastName(value);
+        break;
+      case 'email':
+        setEmail(value);
+        break;
+      case 'phone':
+        setPhone(value);
+        break;
+    }
+  };
 
+  const handleNext = () => {
+    const userProfile: UserProfile = {
+      firstName,
+      lastName,
+      email: email || undefined,
+      phoneNumber: phone || undefined,
+    };
+    localStorage.setItem('userProfile', JSON.stringify(userProfile));
+  };
 
   return (
     <>
-    <div>
-      <h1>General Information</h1>
-      {/* firstName */}
-      <p>First Name</p>
-      <input type="text"  />
-      {/* lastName */}
-      <p>Last Name</p>
-      <input type="text"  />
-      {/* email */} 
-      <p>Email (Optional)</p>
-      <input type="text"  />
-      {/* phone */}
-      <p>Phone Number (Optional)</p>
-      <input type="text"  />                   
-    </div>
+      <div>
+        <h1>General Information</h1>
+        <p>First Name</p>
+        <input type="text" name="firstName" value={firstName} onChange={handleChange} />
+        <p>Last Name</p>
+        <input type="text" name="lastName" value={lastName} onChange={handleChange} />
+        <p>Email (Optional)</p>
+        <input type="text" name="email" value={email} onChange={handleChange} />
+        <p>Phone Number (Optional)</p>
+        <input type="text" name="phone" value={phone} onChange={handleChange} />                   
+      </div>
+      <button onClick={handleNext}>Next</button>
     </>
-  )
-}
+  );
+};
 
-export default GeneralInformation
+export default GeneralInformation;
