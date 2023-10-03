@@ -3,15 +3,18 @@ import './App.css'
 import LandingPage from './components/LandingPage'
 import NavBar from './components/NavBar'
 import AccessModal from './components/AccessKeyModal'
+import EducationLevel from './components/EducationLevel'
+import MessageComponent from './components/MessageComponent'
 
 function App() {
 
   return (
     <>
     {/* Commented to prevent annoyance */}
-    <AccessModal></AccessModal> 
+    {/* <AccessModal></AccessModal> 
     <NavBar></NavBar>
-    <LandingPage></LandingPage>
+    <LandingPage></LandingPage> */}
+    <EducationLevel />
     </>
   )
 }
