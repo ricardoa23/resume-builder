@@ -1,6 +1,6 @@
 export enum DegreeTypes {
-    Associate = 'Associate',
-    Bachelor = 'Bachelor',
-    Master = 'Master',
+    Associate = "Associate's Degree",
+    Bachelor = "Bachelor's Degree",
+    Master = "Master's Degree",
     PhD = 'PhD',
 }

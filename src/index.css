@@ -1,33 +1,47 @@
 * {
-    font-family: "Work Sans", sans-serif;
+  font-family: "Work Sans", sans-serif;
+}
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+h1,
+h2 {
+  font-family: "Abril Fatface", cursive;
 }
 
-h1, h2 {
-    font-family: "Abril Fatface", cursive;
-}
-
-dialog { 
-    height: 70vh;
-    width: 55vw;
-    background: white;
-    background-image: radial-gradient(ellipse at center, white, #666666 );
+dialog {
+  height: 70vh;
+  width: 55vw;
+  background: white;
+  background-image: radial-gradient(ellipse at center, white, #666666);
 }
 
 dialog::backdrop {
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px); 
-  }
-
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+}
 
 .pronounced-gradient-left {
-    background-image: linear-gradient(to right, transparent 40%,);
+  background-image: linear-gradient(to right, transparent 40%);
 }
 
 .pronounced-gradient-right {
-    background-image: linear-gradient(to left, var(--tw-gradient-stops), transparent 60%);
+  background-image: linear-gradient(
+    to left,
+    var(--tw-gradient-stops),
+    transparent 60%
+  );
 }
-  /* 
+/* 
   import React from "react";
 
 const LandingPage = () => {
