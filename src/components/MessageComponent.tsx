@@ -4,6 +4,8 @@ interface MessageComponentProps {
   selectedLevel: string | null;
 }
 
+// TODO: message Needs to be updated to show some resources in order for user to better educate themselves
+
 const MessageComponent: React.FC<MessageComponentProps> = ({ selectedLevel }) => {
   const renderMessage = () => {
     switch (selectedLevel) {
@@ -12,8 +14,10 @@ const MessageComponent: React.FC<MessageComponentProps> = ({ selectedLevel }) =>
       case "someCollege":
         return "I strongly recomend that you leave uncompleted college education off your resume."; 
       default:
-        return "Default message";
+        return null;
     }
+    
+
   };
 
   return (

@@ -7,6 +7,11 @@ import EducationLevel from './components/EducationLevel'
 import MessageComponent from './components/MessageComponent'
 
 function App() {
+  const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
+
+  const handleNext = (level: string) => {
+    setSelectedLevel(level);
+  };
 
   return (
     <>
@@ -14,7 +19,11 @@ function App() {
     {/* <AccessModal></AccessModal> 
     <NavBar></NavBar>
     <LandingPage></LandingPage> */}
-    <EducationLevel />
+            {
+          selectedLevel ? 
+          <MessageComponent selectedLevel={selectedLevel} /> :
+          <EducationLevel handleNext={handleNext} />
+        }
     </>
   )
 }

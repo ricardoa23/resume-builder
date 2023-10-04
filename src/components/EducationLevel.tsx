@@ -1,18 +1,17 @@
 import React, { useState } from "react";
-import MessageComponent from "./MessageComponent";
 
-const EducationLevel: React.FC = () => {
-  const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
-  const [showMessage, setShowMessage] = useState<boolean>(false);
+interface EducationLevelProps {
+  handleNext: (level: string) => void;
+}
 
+const EducationLevel: React.FC<EducationLevelProps> = ({ handleNext }) => {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedLevel(e.target.value);
+    //FIXME: This may not be needed update delete if not used
   };
 
   const handleClick = () => {
-    if (selectedLevel === "highSchool" || selectedLevel === "someCollege") {
-      setShowMessage(true);
-    }
+    const selectedLevel = (document.getElementById("educationLevel") as HTMLSelectElement).value;
+    handleNext(selectedLevel);
   };
 
   return (
@@ -29,7 +28,6 @@ const EducationLevel: React.FC = () => {
         <option value="phd">PhD</option>
       </select>
       <button onClick={handleClick}>Next</button>
-      {showMessage && <MessageComponent selectedLevel={selectedLevel} />}
     </>
   );
 };
