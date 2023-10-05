@@ -4,9 +4,13 @@ import { Education as EducationInterface } from "../utilities/education";
 
 /* FIXME: the following code is not complete. You will need to add/fix additional:
   * - Integrate additional Accomplishments
- * - I need to update the date object currently it shows:"2023-07-01T00:00:00.000Z"
+  * - I need to update the date object currently it shows:"2023-07-01T00:00:00.000Z"
   * - Remove the test function
   * - Catch redering errors with an error boundary
+  * - Add a back button
+  * - Needs to be able to edit the information
+  * - Needs to be able to delete the information
+  * - Needs to be able to add additional degrees
 */
 
 const Education: React.FC = () => {
@@ -128,6 +132,8 @@ const Education: React.FC = () => {
     }
     
   };
+
+
 
   return (
     <>
