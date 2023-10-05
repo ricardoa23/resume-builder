@@ -25,7 +25,7 @@ function App() {
           <MessageComponent selectedLevel={selectedLevel} /> :
           <EducationLevel handleNext={handleNext} />
         } */}
-        <Education></Education>
+        <Education />
     </>
   )
 }
