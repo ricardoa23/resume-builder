@@ -1,13 +1,12 @@
 import { useState, ChangeEvent } from "react";
 import { DegreeTypes } from "../utilities/degreeTypes";
 import { Education as EducationInterface } from "../utilities/education";
-import { formatDateToMonthYear } from "../utilities/dateFormatter";
+import { formatDateToMonthYear as dateFormatter } from "../utilities/common.ts";
 
 /* FIXME: the following code is not complete. You will need to add/fix additional:
  * - Remove the test function
  * - Catch redering errors with an error boundary
  * - Add a back button
-
  */
 
 const initialEducation: EducationInterface = {
@@ -189,7 +188,7 @@ const handleAddDegree = () => {
             type="month"
             name="graduationDate"
             id="graduationDate"
-            value={formatDateToMonthYear(degree.graduationDate)}
+            value={dateFormatter(degree.graduationDate)}
             onChange={(e) => handleChange(e, index)}
           />
           <button type="button" onClick={() => handleRemoveDegree(index)}>
