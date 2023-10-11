@@ -6,6 +6,7 @@ import AccessModal from './components/AccessKeyModal'
 import EducationLevel from './components/EducationLevel'
 import MessageComponent from './components/MessageComponent'
 import Education from './components/Education'
+import WorkHistory from './components/WorkHistory'
 
 function App() {
   const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
@@ -19,13 +20,15 @@ function App() {
     {/* Commented to prevent annoyance */}
     {/* <AccessModal></AccessModal> 
     <NavBar></NavBar>
-    <LandingPage></LandingPage> */}
-            {/* {
+    <LandingPage></LandingPage>
+            {
           selectedLevel ? 
           <MessageComponent selectedLevel={selectedLevel} /> :
           <EducationLevel handleNext={handleNext} />
-        } */}
-        <Education />
+        }
+        <Education /> */}
+      <WorkHistory />
+
     </>
   )
 }

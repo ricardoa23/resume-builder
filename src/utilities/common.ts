@@ -97,3 +97,24 @@ export const verifyObjectInLocalStorage = (objectKey: string) => {
 //     return false;
 //   }
 // };
+
+//original verifiation function for workHistory
+
+  // const verifyJobObjectInLocalStorage = () => {
+  //   const jobs = localStorage.getItem("jobs");
+  //   if (!jobs) {
+  //   console.log("No jobs in local storage");
+  //   return false;
+  //   }
+
+  //   try {
+  //     const jobsArray = JSON.parse(jobs);
+
+  //     if(!Array.isArray(jobsArray) || jobsArray.length === 0) {
+  //       console.log("Jobs array is empty");
+  //       return false;
+  //     }
+      
+    
+  //   }
+  // }

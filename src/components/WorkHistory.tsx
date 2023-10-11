@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent } from "react";
 import { formatDateToMonthYear as dateFormatter } from "../utilities/common";
 import { WorkHistory as WokrHistoryType } from "../utilities/workHistory";
+import { verifyObjectInLocalStorage as verifyObject } from "../utilities/common";
 
 /* TODO: Complete the list below
     * - create form for  user to input work history
@@ -18,7 +19,7 @@ const initialWorkHistory: WokrHistoryType = {
 };
 
 const WorkHistory: React.FC = () => {
-  const [workHistory, setWorkHistory] = useState<WokrHistoryType[]>([]);
+  const [workHistory, setWorkHistory] = useState<WokrHistoryType[]>([initialWorkHistory]);
 
   const handleAddJob = () => {
     setWorkHistory([
@@ -45,28 +46,9 @@ const WorkHistory: React.FC = () => {
 
   const handleNext = () => {
     localStorage.setItem("jobs", JSON.stringify(workHistory));
+    verifyObject("jobs");
   };
 
-
-
-  // const verifyJobObjectInLocalStorage = () => {
-  //   const jobs = localStorage.getItem("jobs");
-  //   if (!jobs) {
-  //   console.log("No jobs in local storage");
-  //   return false;
-  //   }
-
-  //   try {
-  //     const jobsArray = JSON.parse(jobs);
-
-  //     if(!Array.isArray(jobsArray) || jobsArray.length === 0) {
-  //       console.log("Jobs array is empty");
-  //       return false;
-  //     }
-      
-    
-  //   }
-  // }
 
 
   return (
@@ -79,35 +61,42 @@ const WorkHistory: React.FC = () => {
             type="text"
             name="positionTitle"
             value={job.title}
-            onChange={(e) => handleInputChange(index, "title", e.target)}
+            onChange={(e) => handleInputChange(index, "title", e.target.value)}
           />
+          <br /> {/* FIXME: Remove this for styling */}
           <label htmlFor="companyName"> Name of the Company</label>
           <input
             type="text"
             name="companyName"
             value={job.company}
-            onChange={(e) => handleInputChange(index, "company", e.target)}
+            onChange={(e) => handleInputChange(index, "company", e.target.value)}
           />
+          <br /> {/* FIXME: Remove this for styling */}
           <label htmlFor="startDate"> Start Date</label>
           <input
             type="month"
             name="startDate"
             value={dateFormatter(job.startDate)}
-            onChange={(e) => handleInputChange(index, "startDate", e.target)}
+            onChange={(e) => handleInputChange(index, "startDate", e.target.value)}
           />
+          <br /> {/* FIXME: Remove this for styling */}
           <label htmlFor="endDate"> End Date</label>
           <input
             type="month"
             name="endDate"
             value={dateFormatter(job.endDate)}
-            onChange={(e) => handleInputChange(index, "endDate", e.target)}
+            onChange={(e) => handleInputChange(index, "endDate", e.target.value)}
           />
-          <h3>Are you still working here</h3>
-          <input type="checkbox" />
+          <br /> {/* FIXME: Remove this for styling */}
+
+          {/* <h3>Are you still working here</h3>
+          <input type="checkbox" /> */}
+          <br /> {/* FIXME: Remove this for styling */}
           <button type="button" onClick={() => handleRemoveJob(index)}>Remove Job</button>
         </div>
       ))}
       <button onClick={handleAddJob}>Add Job</button>
+      <br /> {/* FIXME: Remove this for styling */}
       <button onClick={handleNext}>Next</button>
     </>
   );
