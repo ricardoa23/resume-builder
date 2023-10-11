@@ -1,13 +1,13 @@
-import { useState, ChangeEvent } from "react";
+import React, { useState, ChangeEvent } from "react";
 import { DegreeTypes } from "../utilities/degreeTypes";
 import { Education as EducationInterface } from "../utilities/education";
-import { formatDateToMonthYear } from "../utilities/dateFormatter";
+import { formatDateToMonthYear as dateFormatter } from "../utilities/common.ts";
+import { verifyObjectInLocalStorage as verifyObject } from "../utilities/common.ts";
 
 /* FIXME: the following code is not complete. You will need to add/fix additional:
  * - Remove the test function
  * - Catch redering errors with an error boundary
  * - Add a back button
-
  */
 
 const initialEducation: EducationInterface = {
@@ -40,7 +40,7 @@ const Education: React.FC = () => {
   ) => {
     const newDegrees = [...degrees];
     const { name, value } = e.target;
-  
+
     switch (name) {
       case "degreeSelect":
         newDegrees[index].degreeType = value as DegreeTypes;
@@ -60,14 +60,16 @@ const Education: React.FC = () => {
       default:
         console.warn(`Unhandled input name: ${name}`);
     }
-  
+
     setDegrees(newDegrees);
   };
 
-const handleAddDegree = () => {
-  setDegrees([...degrees, { ...initialEducation, graduationDate: new Date() }]);
-};
-
+  const handleAddDegree = () => {
+    setDegrees([
+      ...degrees,
+      { ...initialEducation, graduationDate: new Date() },
+    ]);
+  };
 
   const handleRemoveDegree = (index: number) => {
     const newDegrees = [...degrees];
@@ -76,69 +78,9 @@ const handleAddDegree = () => {
   };
 
   const handleNext = () => {
-
     localStorage.setItem("education", JSON.stringify(degrees));
-    verifyEducationObjectInLocalStorage(); // FIXME: remove this line
+    verifyObject("education"); // FIXME: remove this line
   };
-
-  const verifyEducationObjectInLocalStorage = () => {
-    const educationJSON = localStorage.getItem("education");
-  
-    if (!educationJSON) {
-      console.log("No education array found in local storage.");
-      return false;
-    }
-  
-    try {
-      const educationArray = JSON.parse(educationJSON) as EducationInterface[];
-  
-      if (!Array.isArray(educationArray) || educationArray.length === 0) {
-        console.log("Education data in local storage is not a non-empty array.");
-        return false;
-      }
-  
-      for (const education of educationArray) {
-        if (!education) {
-          console.log("One of the education objects in local storage is null or undefined.");
-          return false;
-        }
-  
-        if (!Object.values(DegreeTypes).includes(education.degreeType as DegreeTypes)) {
-          console.log("Invalid degreeType in one of the education objects.");
-          return false;
-        }
-  
-        if (typeof education.major !== "string" || education.major.trim() === "") {
-          console.log("Invalid major in one of the education objects.");
-          return false;
-        }
-  
-        if (typeof education.universityName !== "string" || education.universityName.trim() === "") {
-          console.log("Invalid universityName in one of the education objects.");
-          return false;
-        }
-  
-        if (typeof education.gpa !== "number" || isNaN(education.gpa) || education.gpa < 0 || education.gpa > 4) {
-          console.log("Invalid GPA in one of the education objects.");
-          return false;
-        }
-  
-        if (!education.graduationDate || typeof((new Date(education.graduationDate))) !== 'object' ) {
-          console.log('Invalid graduationDate in one of the education objects.');
-          return false;
-        }
-      }
-  
-      console.log('Valid education array found in local storage:', educationArray);
-      return true;
-    } catch (error) {
-      console.error('Failed to parse education array from local storage:', error);
-      return false;
-    }
-  };
-  
-  
-  
 
   return (
     <>
@@ -189,7 +131,7 @@ const handleAddDegree = () => {
             type="month"
             name="graduationDate"
             id="graduationDate"
-            value={formatDateToMonthYear(degree.graduationDate)}
+            value={dateFormatter(degree.graduationDate)}
             onChange={(e) => handleChange(e, index)}
           />
           <button type="button" onClick={() => handleRemoveDegree(index)}>
