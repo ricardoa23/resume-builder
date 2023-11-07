@@ -7,6 +7,7 @@ import EducationLevel from './components/EducationLevel'
 import MessageComponent from './components/MessageComponent'
 import Education from './components/Education'
 import WorkHistory from './components/WorkHistory'
+import JobDetails from './components/JobDetails'
 
 function App() {
   const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
@@ -26,8 +27,9 @@ function App() {
           <MessageComponent selectedLevel={selectedLevel} /> :
           <EducationLevel handleNext={handleNext} />
         }
-        <Education /> */}
-      <WorkHistory />
+      <Education /> 
+       <WorkHistory /> 
+      // <JobDetails / */}
 
     </>
   )
