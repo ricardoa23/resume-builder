@@ -1,12 +1,13 @@
-import { Document, Packer, SectionType, Paragraph, TextRun } from "docx";
+import { AlignmentType, Document, HeadingLevel, Paragraph, TabStopPosition, TabStopType, TextRun } from "docx";
 
-
- export const doc = new Document({
+export const doc = new Document({
     sections: [{
-children: [
-    new Paragraph({
-        children: [new TextRun("Hello World")],
-    })
-],
+        children: [
+            new Paragraph({
+                text: "Hello World",
+                heading: HeadingLevel.HEADING_1,
+                alignment: AlignmentType.CENTER,
+            }),
+        ],
     }],
 });
