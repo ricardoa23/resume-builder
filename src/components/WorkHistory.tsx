@@ -19,7 +19,7 @@ const initialWorkHistory: WorkHistoryType = {
 };
 
 const WorkHistory: React.FC = () => {
-  const [workHistory, setWorkHistory] = useState<WokrHistoryType[]>([initialWorkHistory]);
+  const [workHistory, setWorkHistory] = useState<WorkHistoryType[]>([initialWorkHistory]);
 
   const handleAddJob = () => {
     setWorkHistory([

@@ -1,94 +1,241 @@
 import * as docx from "docx";
-import {HeadingLevel, Paragraph, TextRun} from "docx";
-import { resumeData } from "../utilities/resumeData.ts";
-
-
+import { HeadingLevel, Paragraph, TextRun } from "docx";
+import jobDetails from "../components/JobDetails.tsx";
 
 /* TODO: stored data needs to be parsed into appropriate variables
   -functions needs to be created for each items to be dynamically created
-    -- createProfile()
-    -- createJobDescription()
-    -- createEducation()
-    -- createCertificate()
-    -- createAward()
  */
 
 // FIXME: bullets are not being created correctly ( adds all items to single bullet) NEEDS TO CREATE A BULLET FOR EACH ITEM IN THE ARRAY
 
-//variables for the resume
-const resumeProfile: resumeData;
-const jobData: string | null = localStorage.getItem("jobs");
-
 // Hard coded data for testing
-const firstName: string = "Taylor";
-const lastName: string = "Joe";
-const email: string = "Email@email.com";
-const phoneNumber: string = "(123) 456-7890";
-const summary: string = "Enthusiastic and experienced professional with a passion for excellence. Skilled in Software Development, Data Analysis, and Project Management.";
-const jobTitle: string = "Job Title";
-const jobDescription: string = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
-const bulletPoints: string[] = ["Achieved X% improvement in Y", "Led a team of Z", "Managed project ABC", "Developed feature XYZ"];
 
-// Function to create a job description
-function createJobDescription(title: string, description: string, bullets: string[]): docx.Paragraph[] {
-    const children: docx.Paragraph[] = [
-        new Paragraph({
-            text: title,
-            heading: HeadingLevel.HEADING_2,
-        }),
-        new Paragraph(description),
-    ];
+class UserProfile {
+  firstName: string;
+  lastName: string;
+  email?: string;
+  phoneNumber?: string;
 
-    // Creating a bullet point for each item in the bullets array
-    bullets.forEach(bullet => {
-        children.push(
-            new Paragraph({
-                text: bullet,
-                bullet: {
-                    level: 0, // Bullet level
-                },
-            })
-        );
-    });
-
-    return children;
+  constructor(
+    firstName: string,
+    lastName: string,
+    email?: string,
+    phoneNumber?: string
+  ) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.phoneNumber = phoneNumber;
+  }
 }
 
+class Education {
+  degreeType: string;
+  major: string;
+  universityName: string;
+  gpa: number;
+  graduationDate: Date;
 
+  constructor(
+    degreeType: string,
+    major: string,
+    universityName: string,
+    gpa: number,
+    graduationDate: Date
+  ) {
+    this.degreeType = degreeType;
+    this.major = major;
+    this.universityName = universityName;
+    this.gpa = gpa;
+    this.graduationDate = graduationDate;
+  }
+}
+
+class WorkHistory {
+  title: string;
+  company: string;
+  startDate: Date;
+  endDate?: Date;
+  duties: string[];
+
+  constructor(
+    title: string,
+    company: string,
+    startDate: Date,
+    endDate?: Date,
+    duties: string[]
+  ) {
+    this.title = title;
+    this.company = company;
+    this.startDate = startDate;
+    this.endDate = endDate;
+    this.duties = duties;
+  }
+}
+
+class Certificate {
+  name: string;
+  issuer: string;
+  issueDate: Date;
+
+  constructor(name: string, issuer: string, issueDate: Date) {
+    this.name = name;
+    this.issuer = issuer;
+    this.issueDate = issueDate;
+  }
+}
+
+class Award {
+  name: string;
+  issuer: string;
+  issueDate: Date;
+
+  constructor(name: string, issuer: string, issueDate: Date) {
+    this.name = name;
+    this.issuer = issuer;
+    this.issueDate = issueDate;
+  }
+}
+
+class resumeData {
+  UserProfile: UserProfile;
+  Education?: Education[];
+  Certificates?: Certificate[];
+  WorkHistory: WorkHistory[];
+  Awards?: Award[];
+
+  constructor(
+    UserProfile: UserProfile,
+    WorkHistory: WorkHistory[],
+    Education?: Education[],
+    Certificates?: Certificate[],
+    Awards?: Award[]
+  ) {
+    this.UserProfile = UserProfile;
+    this.WorkHistory = WorkHistory;
+    this.Education = Education;
+    this.Certificates = Certificates;
+    this.Awards = Awards;
+  }
+}
+
+const testData1 = new resumeData(
+  new UserProfile("John", "Doe", "email@email.com, ", "(213)555-4589"),
+  [
+    new WorkHistory(
+      "Software Engineer",
+      "Google",
+      new Date("2019-01-01"),
+      new Date("2020-01-01"),
+      [
+        "Worked on Google Search",
+        "Worked on Google Maps",
+        "Worked on Google Docs",
+      ]
+    ),
+    new WorkHistory(
+      "Software Engineer",
+      "OpenAI",
+      new Date("2021-01-01"),
+      new Date("Present"),
+      [
+        "Worked on Google Search",
+        "Worked on Google Maps",
+        "Worked on Google Docs",
+      ]
+    ),
+  ],
+  [
+    new Education(
+      "Bachelor of Science",
+      "Computer Science",
+      "University of California, Los Angeles",
+      3.5,
+      new Date("2021-06-01")
+    ),
+  ],
+  [
+    new Certificate(
+      "AWS Certified Cloud Practitioner",
+      "Amazon",
+      new Date("2021-01-01")
+    ),
+  ],
+  [new Award("Employee of the Month", "Google", new Date("2020-01-01"))]
+);
+
+console.log(testData1.UserProfile.firstName);
+
+function createJobHistory(workHistory: WorkHistory[]) {
+  let jobs: any = [];
+
+  const duties = (duties: string[]) => {
+    let dutyRenders: any = [];
+    for (let i = 0; i < duties.length; i++) {
+      let dutyRender = new Paragraph({
+        text: duties[i],
+        bullet: {
+          level: 0, // Bullet level
+        },
+      });
+      dutyRenders.push(dutyRender);
+    }
+    dutyRenders = dutyRenders.join(", ");
+    console.log(dutyRenders);
+    return dutyRenders;
+  };
+
+  for (let i = 0; i < workHistory.length; i++) {
+    let job = new Paragraph({
+      text: workHistory[i].title,
+      heading: HeadingLevel.HEADING_3,
+    });
+    new Paragraph({
+      text: workHistory[i].company,
+      heading: HeadingLevel.HEADING_3,
+    }),
+      new Paragraph({
+        text: `${workHistory[i].startDate} - ${workHistory[i].endDate}`,
+        heading: HeadingLevel.HEADING_3,
+      }),
+      duties(workHistory[i].duties);
+    jobs.push(job);
+  }
+  jobs = jobs.join(", ");
+  console.log(jobs);
+  return jobs;
+} // end of createJobHistory
 
 // Create a new document with all sections
 export const doc = new docx.Document({
-    sections: [{
-        properties: {},
-        children: [
-            new Paragraph({
-                children: [
-                    new TextRun({
-                        text: "Taylor Joe",
-                        bold: true,
-                        size: 32,
-                        font: "Calibri",
-                    }),
-                ],
+  sections: [
+    {
+      properties: {},
+      children: [
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: `${testData1.UserProfile.firstName} ${testData1.UserProfile.lastName}`,
+              bold: true,
+              size: 32,
+              font: "Calibri",
             }),
-            new Paragraph("Lorem ipsum dolor sit amet, consectetur adipiscing elit."),
-            new Paragraph({
-                text: "Summary",
-                heading: HeadingLevel.HEADING_1,
-            }),
-            new Paragraph(`${summary}}`),
-            new Paragraph({
-                text: "Personal Details",
-                heading: HeadingLevel.HEADING_1,
-            }),
-            new Paragraph(`Name: ${firstName} ${lastName}`),
-            new Paragraph(`Email: ${email}`),
-            new Paragraph(`Phone: ${phoneNumber}`),
-            ...createJobDescription(
-                `${jobTitle} 1`,
-                `${jobDescription}`,
-                [`${bulletPoints}`]
-            ),
-        ],
-    }],
+          ],
+        }),
+        new Paragraph({
+          text: `Email: ${testData1.UserProfile.email}             Phone: ${testData1.UserProfile.phoneNumber}`,
+          heading: HeadingLevel.HEADING_1,
+        }),
+        new Paragraph(
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        ),
+        new Paragraph({
+          text: "Summary",
+          heading: HeadingLevel.HEADING_1,
+        }),
+        createJobHistory(testData1.WorkHistory),
+      ],
+    },
+  ],
 });
+console.log(doc);
