@@ -1,6 +1,5 @@
 import * as docx from "docx";
 import { HeadingLevel, Paragraph, TextRun } from "docx";
-import jobDetails from "../components/JobDetails.tsx";
 
 /* TODO: stored data needs to be parsed into appropriate variables
   -functions needs to be created for each items to be dynamically created
@@ -119,6 +118,18 @@ class resumeData {
   }
 }
 
+
+function plusMinus (arr: number[]) {
+let pos = 0
+let neg = 0;
+let zero = 0;
+  for (let i = 0; i < arr.length; i++) {
+    (arr[i] > 0) ? pos++ : (arr[i] < 0) ? neg++ : zero++
+  }
+
+}
+
+//Hard coded data for testing
 const testData1 = new resumeData(
   new UserProfile("John", "Doe", "email@email.com, ", "(213)555-4589"),
   [
@@ -172,7 +183,7 @@ function createJobHistory(workHistory: WorkHistory[]) {
   const duties = (duties: string[]) => {
     let dutyRenders: any = [];
     for (let i = 0; i < duties.length; i++) {
-      let dutyRender = new Paragraph({
+      const dutyRender = new Paragraph({
         text: duties[i],
         bullet: {
           level: 0, // Bullet level
@@ -181,12 +192,11 @@ function createJobHistory(workHistory: WorkHistory[]) {
       dutyRenders.push(dutyRender);
     }
     dutyRenders = dutyRenders.join(", ");
-    console.log(dutyRenders);
     return dutyRenders;
   };
 
   for (let i = 0; i < workHistory.length; i++) {
-    let job = new Paragraph({
+    const job = new Paragraph({
       text: workHistory[i].title,
       heading: HeadingLevel.HEADING_3,
     });
@@ -202,7 +212,7 @@ function createJobHistory(workHistory: WorkHistory[]) {
     jobs.push(job);
   }
   jobs = jobs.join(", ");
-  console.log(jobs);
+  console.debug(jobs)
   return jobs;
 } // end of createJobHistory
 
@@ -238,4 +248,3 @@ export const doc = new docx.Document({
     },
   ],
 });
-console.log(doc);
