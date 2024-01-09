@@ -53,7 +53,7 @@ const AccessModal = () => {
 
   return (
     <>
-      <dialog data-open-modal>
+      <dialog data-open-modal="open">
         <div className="text-center flex flex-col justify-between h-full">
           <div>
             <h1 className="text-8xl text-primary font-extrabold text-center mb-9">

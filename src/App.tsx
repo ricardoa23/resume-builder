@@ -8,6 +8,7 @@ import MessageComponent from './components/MessageComponent'
 import Education from './components/Education'
 import WorkHistory from './components/WorkHistory'
 import JobDetails from './components/JobDetails'
+import FileTester from './components/FileTester'
 
 function App() {
   const [selectedLevel, setSelectedLevel] = useState<string | null>(null);
@@ -31,6 +32,7 @@ function App() {
        <WorkHistory /> 
       // <JobDetails / */}
 
+    <FileTester />
     </>
   )
 }

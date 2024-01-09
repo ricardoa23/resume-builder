@@ -1,6 +1,6 @@
-import React, { useState, ChangeEvent } from "react";
+import React, { useState } from "react";
 import { formatDateToMonthYear as dateFormatter } from "../utilities/common";
-import { WorkHistory as WokrHistoryType } from "../utilities/workHistory";
+import { WorkHistory as WorkHistoryType } from "../utilities/workHistory";
 import { verifyObjectInLocalStorage as verifyObject } from "../utilities/common";
 
 /* TODO: Complete the list below
@@ -10,7 +10,7 @@ import { verifyObjectInLocalStorage as verifyObject } from "../utilities/common"
     * - create a button to add more work history (max of 4)
 */
 
-const initialWorkHistory: WokrHistoryType = {
+const initialWorkHistory: WorkHistoryType = {
   title: "",
   company: "",
   startDate: new Date(),
@@ -19,7 +19,7 @@ const initialWorkHistory: WokrHistoryType = {
 };
 
 const WorkHistory: React.FC = () => {
-  const [workHistory, setWorkHistory] = useState<WokrHistoryType[]>([initialWorkHistory]);
+  const [workHistory, setWorkHistory] = useState<WorkHistoryType[]>([initialWorkHistory]);
 
   const handleAddJob = () => {
     setWorkHistory([
@@ -36,7 +36,7 @@ const WorkHistory: React.FC = () => {
 
   const handleInputChange = (
     index: number,
-    field: keyof WokrHistoryType,
+    field: keyof WorkHistoryType,
     value: any
   ) => {
     const updatedWorkHistory = [...workHistory];
