@@ -118,17 +118,6 @@ class resumeData {
   }
 }
 
-
-function plusMinus (arr: number[]) {
-let pos = 0
-let neg = 0;
-let zero = 0;
-  for (let i = 0; i < arr.length; i++) {
-    (arr[i] > 0) ? pos++ : (arr[i] < 0) ? neg++ : zero++
-  }
-
-}
-
 //Hard coded data for testing
 const testData1 = new resumeData(
   new UserProfile("John", "Doe", "email@email.com, ", "(213)555-4589"),
@@ -178,10 +167,10 @@ const testData1 = new resumeData(
 console.log(testData1.UserProfile.firstName);
 
 function createJobHistory(workHistory: WorkHistory[]) {
-  let jobs: any = [];
+  let jobs: unknown = [];
 
   const duties = (duties: string[]) => {
-    let dutyRenders: any = [];
+    let dutyRenders: unknown = [];
     for (let i = 0; i < duties.length; i++) {
       const dutyRender = new Paragraph({
         text: duties[i],

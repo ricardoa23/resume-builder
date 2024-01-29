@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { WorkHistory as WorkHistoryType } from "../utilities/workHistory";
+import { WorkHistory as WorkHistoryType } from "../interface/workHistory.ts";
 
 // FIXME: Add Logic to get to move on once the last job is reached LN: 42
 // Styling
