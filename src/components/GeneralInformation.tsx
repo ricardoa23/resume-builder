@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { UserProfile } from "../utilities/userProfile";
+import { UserProfile } from "../interface/userProfile.ts";
 
 const GeneralInformation: React.FC = () => {
   const [firstName, setFirstName] = useState<string>("");
@@ -37,28 +37,38 @@ const GeneralInformation: React.FC = () => {
 
   return (
     <>
-      <div>
-        <h1>General Information</h1>
-        <p>First Name</p>
-        <input
-          type="text"
-          name="firstName"
-          value={firstName}
-          onChange={handleChange}
-        />
-        <p>Last Name</p>
-        <input
-          type="text"
-          name="lastName"
-          value={lastName}
-          onChange={handleChange}
-        />
-        <p>Email (Optional)</p>
-        <input type="text" name="email" value={email} onChange={handleChange} />
-        <p>Phone Number (Optional)</p>
-        <input type="text" name="phone" value={phone} onChange={handleChange} />
+      <div className="h-screen flex flex-col">
+        <h1 className="text-4xl text-center ">General Information</h1>
+        <div className="py-4 ps-4">
+          <p>First Name</p>
+          <input
+            type="text"
+            className="border border-solid border-primary rounded-md"
+            name="firstName"
+            value={firstName}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="py-4 ps-4">
+          <p>Last Name</p>
+          <input
+            type="text"
+            className="border border-solid border-primary rounded-md"
+            name="lastName"
+            value={lastName}
+            onChange={handleChange}
+          />
+          </div>
+        <div className="py-4 ps-4">
+          <p>Email (Optional)</p>
+          <input type="text" className="border border-solid border-primary rounded-md"  name="email" value={email} onChange={handleChange} />
+        </div>
+        <div className="py-4 ps-4">
+          <p>Phone Number (Optional)</p>
+          <input type="text" className="border border-solid border-primary rounded-md" name="phone" value={phone} onChange={handleChange} />
+        </div>
+      <button className="bg-blue-200 border border-solid border-green-300 max-w-xs" onClick={handleNext}>Next</button>
       </div>
-      <button onClick={handleNext}>Next</button>
     </>
   );
 };

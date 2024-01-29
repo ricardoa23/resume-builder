@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { formatDateToMonthYear as dateFormatter } from "../utilities/common";
-import { WorkHistory as WorkHistoryType } from "../utilities/workHistory";
+import { WorkHistory as WorkHistoryType } from "../interface/workHistory.ts";
 import { verifyObjectInLocalStorage as verifyObject } from "../utilities/common";
 
 /* TODO: Complete the list below

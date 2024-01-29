@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent } from "react";
 import { DegreeTypes } from "../utilities/degreeTypes";
-import { Education as EducationInterface } from "../utilities/education";
+import { Education as EducationInterface } from "../interface/education.ts";
 import { formatDateToMonthYear as dateFormatter } from "../utilities/common.ts";
 import { verifyObjectInLocalStorage as verifyObject } from "../utilities/common.ts";
 

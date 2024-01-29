@@ -1,4 +1,4 @@
-import { DegreeTypes } from "./degreeTypes";
+import { DegreeTypes } from "../utilities/degreeTypes.ts";
 
 export interface Education {
     degreeType: DegreeTypes | undefined | "";
