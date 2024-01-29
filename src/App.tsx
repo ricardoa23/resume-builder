@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import './App.css'
+import GeneralInformation from './components/GeneralInformation';
 
 function App() {
 
@@ -7,6 +7,7 @@ function App() {
 
   return (
     <>
+    <GeneralInformation />
     </>
   )
 }
