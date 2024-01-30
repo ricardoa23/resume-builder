@@ -1,14 +1,10 @@
 import * as docx from "docx";
 import { HeadingLevel, Paragraph, TextRun } from "docx";
 
-/* TODO: stored data needs to be parsed into appropriate variables
-  -functions needs to be created for each items to be dynamically created
- */
-
-// FIXME: bullets are not being created correctly ( adds all items to single bullet) NEEDS TO CREATE A BULLET FOR EACH ITEM IN THE ARRAY
+//TODO: stored data needs to be parsed into appropriate variables
+//TODO: functions needs to be created for each items to be dynamically created
 
 // Hard coded data for testing
-
 class UserProfile {
   firstName: string;
   lastName: string;
@@ -131,7 +127,7 @@ const testData1 = new resumeData(
         "Worked on Google Maps",
         "Worked on Google Docs",
       ],
-      new Date("2019-01-01"),
+      new Date("2019-01-01")
     ),
     new WorkHistory(
       "Software Engineer",
@@ -164,89 +160,50 @@ const testData1 = new resumeData(
   [new Award("Employee of the Month", "Google", new Date("2020-01-01"))]
 );
 
-console.log(testData1.UserProfile.firstName);
-
-
-
-// function createJobHistory(workHistory: WorkHistory[]) {
-//   let jobs: unknown = [];
-
-//   const duties = (duties: string[]) => {
-//     let dutyRenders: unknown = [];
-//     for (let i = 0; i < duties.length; i++) {
-//       const dutyRender = new Paragraph({
-//         text: duties[i],
-//         bullet: {
-//           level: 0, // Bullet level
-//         },
-//       });
-//       dutyRenders.push(dutyRender);
-//     }
-//     dutyRenders = dutyRenders.join(", ");
-//     return dutyRenders;
-//   };
-
-//   for (let i = 0; i < workHistory.length; i++) {
-//     const job = new Paragraph({
-//       text: workHistory[i].title,
-//       heading: HeadingLevel.HEADING_3,
-//     });
-//     new Paragraph({
-//       text: workHistory[i].company,
-//       heading: HeadingLevel.HEADING_3,
-//     }),
-//       new Paragraph({
-//         text: `${workHistory[i].startDate} - ${workHistory[i].endDate}`,
-//         heading: HeadingLevel.HEADING_3,
-//       }),
-//       duties(workHistory[i].duties);
-//     jobs.push(job);
-//   }
-//   jobs = jobs.join(", ");
-//   console.debug(jobs)
-//   return jobs;
-// } // end of createJobHistory
-
 const createDutiesList = (duties: WorkHistory["duties"]) => {
-
-  if (!duties || duties.length === 0 || undefined) {
-    return new TextRun({text:'', size: 12});
-  }
-
-  for (const duty of duties) {
-    return new TextRun({text: duty});
-  }
-
+  return duties.map(
+    (duty) =>
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: duty,
+          })
+        ],
+        bullet: {
+          level: 0,
+        }
+      })
+  );
 };
+
 const createJobHistory = (workHistory: WorkHistory[]) => {
-  for ( const job of workHistory) {
-    return new Paragraph({
-      children: [
-        new TextRun({
-          text: job.title,
-          size: 24,
-          bold: true,
-          font: 'Times New Roman'
-        }),
-        new TextRun({
-          text: job.company,
-          size: 18,
-        }),
-        new TextRun({
-          text: `${job.startDate} - ${(job.endDate) ? job.endDate : 'Present'}`,
-          size: 12,
-        }),
-        (createDutiesList(job.duties)  !== undefined) ? createDutiesList(job.duties) : new TextRun({text: '',}),
-      ]
-    })
-  }
-  };
-
-
-
+  return workHistory.map(
+    (job) =>
+      new Paragraph({
+        children: [
+          new Paragraph({
+            children: [new TextRun({ text: job.title })],
+          }),
+          new Paragraph({
+            children: [new TextRun({ text: job.company })],
+          }),
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: `${job.startDate} - ${
+                  job.endDate ? job.endDate : "Present"
+                }`,
+              }),
+            ]
+          }),
+          ...createDutiesList(job.duties),
+        ]
+      })
+  );
+};
 
 // Create a new document with all sections
-export const doc = new docx.Document({
+const doc = new docx.Document({
   sections: [
     {
       properties: {},
@@ -255,15 +212,13 @@ export const doc = new docx.Document({
           children: [
             new TextRun({
               text: `${testData1.UserProfile.firstName} ${testData1.UserProfile.lastName}`,
-              bold: true,
-              size: 32,
-              font: "Calibri",
             }),
           ],
+          heading: HeadingLevel.HEADING_2
         }),
         new Paragraph({
           text: `Email: ${testData1.UserProfile.email}             Phone: ${testData1.UserProfile.phoneNumber}`,
-          heading: HeadingLevel.HEADING_1,
+          heading: HeadingLevel.HEADING_1
         }),
         new Paragraph(
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
@@ -272,8 +227,10 @@ export const doc = new docx.Document({
           text: "Summary",
           heading: HeadingLevel.HEADING_1,
         }),
-        createJobHistory(testData1.WorkHistory),
-      ],
-    },
-  ],
+        ...createJobHistory(testData1.WorkHistory)
+      ]
+    }
+  ]
 });
+
+export default doc;

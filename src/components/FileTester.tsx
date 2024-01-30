@@ -1,5 +1,5 @@
 import React from 'react'
-import { doc } from '../resume-templates/template-1'
+import { template1 as doc } from '../resume-templates'
 import { saveAs } from 'file-saver'
 import { Packer } from 'docx';
 
@@ -8,8 +8,6 @@ const downloadFile = async () => {
     const blob = await Packer.toBlob(doc);
     saveAs(blob, "example.docx");
 }
-
-const sample = console.log('hello world')
 const FileTester = () => {
   return (
     <>

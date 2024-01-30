@@ -1,0 +1,1 @@
+export { default as template1 } from './template-1'
