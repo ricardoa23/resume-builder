@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { UserProfile } from "../interface/userProfile.ts";
+import { UserProfile } from "../../interface/userProfile.ts";
 
 const GeneralInformation: React.FC = () => {
   const [firstName, setFirstName] = useState<string>("");

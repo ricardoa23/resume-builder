@@ -61,8 +61,8 @@ class WorkHistory {
     title: string,
     company: string,
     startDate: Date,
-    endDate?: Date,
-    duties: string[]
+    duties: string[],
+    endDate?: Date
   ) {
     this.title = title;
     this.company = company;
@@ -125,24 +125,24 @@ const testData1 = new resumeData(
     new WorkHistory(
       "Software Engineer",
       "Google",
-      new Date("2019-01-01"),
       new Date("2020-01-01"),
       [
         "Worked on Google Search",
         "Worked on Google Maps",
         "Worked on Google Docs",
-      ]
+      ],
+      new Date("2019-01-01"),
     ),
     new WorkHistory(
       "Software Engineer",
       "OpenAI",
-      new Date("2021-01-01"),
       new Date("Present"),
       [
         "Worked on Google Search",
         "Worked on Google Maps",
         "Worked on Google Docs",
-      ]
+      ],
+      new Date("2021-01-01")
     ),
   ],
   [
@@ -166,44 +166,84 @@ const testData1 = new resumeData(
 
 console.log(testData1.UserProfile.firstName);
 
-function createJobHistory(workHistory: WorkHistory[]) {
-  let jobs: unknown = [];
 
-  const duties = (duties: string[]) => {
-    let dutyRenders: unknown = [];
-    for (let i = 0; i < duties.length; i++) {
-      const dutyRender = new Paragraph({
-        text: duties[i],
-        bullet: {
-          level: 0, // Bullet level
-        },
-      });
-      dutyRenders.push(dutyRender);
-    }
-    dutyRenders = dutyRenders.join(", ");
-    return dutyRenders;
+
+// function createJobHistory(workHistory: WorkHistory[]) {
+//   let jobs: unknown = [];
+
+//   const duties = (duties: string[]) => {
+//     let dutyRenders: unknown = [];
+//     for (let i = 0; i < duties.length; i++) {
+//       const dutyRender = new Paragraph({
+//         text: duties[i],
+//         bullet: {
+//           level: 0, // Bullet level
+//         },
+//       });
+//       dutyRenders.push(dutyRender);
+//     }
+//     dutyRenders = dutyRenders.join(", ");
+//     return dutyRenders;
+//   };
+
+//   for (let i = 0; i < workHistory.length; i++) {
+//     const job = new Paragraph({
+//       text: workHistory[i].title,
+//       heading: HeadingLevel.HEADING_3,
+//     });
+//     new Paragraph({
+//       text: workHistory[i].company,
+//       heading: HeadingLevel.HEADING_3,
+//     }),
+//       new Paragraph({
+//         text: `${workHistory[i].startDate} - ${workHistory[i].endDate}`,
+//         heading: HeadingLevel.HEADING_3,
+//       }),
+//       duties(workHistory[i].duties);
+//     jobs.push(job);
+//   }
+//   jobs = jobs.join(", ");
+//   console.debug(jobs)
+//   return jobs;
+// } // end of createJobHistory
+
+const createDutiesList = (duties: WorkHistory["duties"]) => {
+
+  if (!duties || duties.length === 0 || undefined) {
+    return new TextRun({text:'', size: 12});
+  }
+
+  for (const duty of duties) {
+    return new TextRun({text: duty});
+  }
+
+};
+const createJobHistory = (workHistory: WorkHistory[]) => {
+  for ( const job of workHistory) {
+    return new Paragraph({
+      children: [
+        new TextRun({
+          text: job.title,
+          size: 24,
+          bold: true,
+          font: 'Times New Roman'
+        }),
+        new TextRun({
+          text: job.company,
+          size: 18,
+        }),
+        new TextRun({
+          text: `${job.startDate} - ${(job.endDate) ? job.endDate : 'Present'}`,
+          size: 12,
+        }),
+        (createDutiesList(job.duties)  !== undefined) ? createDutiesList(job.duties) : new TextRun({text: '',}),
+      ]
+    })
+  }
   };
 
-  for (let i = 0; i < workHistory.length; i++) {
-    const job = new Paragraph({
-      text: workHistory[i].title,
-      heading: HeadingLevel.HEADING_3,
-    });
-    new Paragraph({
-      text: workHistory[i].company,
-      heading: HeadingLevel.HEADING_3,
-    }),
-      new Paragraph({
-        text: `${workHistory[i].startDate} - ${workHistory[i].endDate}`,
-        heading: HeadingLevel.HEADING_3,
-      }),
-      duties(workHistory[i].duties);
-    jobs.push(job);
-  }
-  jobs = jobs.join(", ");
-  console.debug(jobs)
-  return jobs;
-} // end of createJobHistory
+
+
 
 // Create a new document with all sections
 export const doc = new docx.Document({

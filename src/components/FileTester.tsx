@@ -20,4 +20,4 @@ const FileTester = () => {
   )
 }
 
-export default FileTester
+export default FileTester;

@@ -1,13 +1,9 @@
 import './App.css'
-import GeneralInformation from './components/GeneralInformation';
-
+import { GeneralInformation, LandingPage, FileTester } from './components'
 function App() {
-
-
-
   return (
     <>
-    <GeneralInformation />
+    <FileTester />
     </>
   )
 }
