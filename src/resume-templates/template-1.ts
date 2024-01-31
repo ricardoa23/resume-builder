@@ -119,24 +119,24 @@ const testData1 = new resumeData(
   new UserProfile("John", "Doe", "email@email.com, ", "(213)555-4589"),
   [
     new WorkHistory(
-      "Software Engineer",
-      "Google",
+      "Front end engineer",
+      "Job 1",
       new Date("2020-01-01"),
       [
-        "Worked on Google Search",
-        "Worked on Google Maps",
-        "Worked on Google Docs",
+        "job 1 duty 1",
+        "job 2 duty 2",
+        "job 3 duty 3",
       ],
       new Date("2019-01-01")
     ),
     new WorkHistory(
       "Software Engineer",
-      "OpenAI",
+      "Job 2",
       new Date("Present"),
       [
-        "Worked on Google Search",
-        "Worked on Google Maps",
-        "Worked on Google Docs",
+        "job 2 duty 1",
+        "job 2 duty 2",
+        "job 2 duty 3",
       ],
       new Date("2021-01-01")
     ),
@@ -160,47 +160,47 @@ const testData1 = new resumeData(
   [new Award("Employee of the Month", "Google", new Date("2020-01-01"))]
 );
 
-const createDutiesList = (duties: WorkHistory["duties"]) => {
-  return duties.map(
-    (duty) =>
-      new Paragraph({
-        children: [
-          new TextRun({
-            text: duty,
-          })
-        ],
-        bullet: {
-          level: 0,
-        }
-      })
-  );
-};
+// const createDutiesList = (duties: WorkHistory["duties"]) => {
+//   return duties.map(
+//     (duty) =>
+//       new Paragraph({
+//         children: [
+//           new TextRun({
+//             text: duty,
+//           })
+//         ],
+//         bullet: {
+//           level: 0,
+//         }
+//       })
+//   );
+// };
 
-const createJobHistory = (workHistory: WorkHistory[]) => {
-  return workHistory.map(
-    (job) =>
-      new Paragraph({
-        children: [
-          new Paragraph({
-            children: [new TextRun({ text: job.title })],
-          }),
-          new Paragraph({
-            children: [new TextRun({ text: job.company })],
-          }),
-          new Paragraph({
-            children: [
-              new TextRun({
-                text: `${job.startDate} - ${
-                  job.endDate ? job.endDate : "Present"
-                }`,
-              }),
-            ]
-          }),
-          ...createDutiesList(job.duties),
-        ]
-      })
-  );
-};
+// const createJobHistory = (workHistory: WorkHistory[]) => {
+//   return workHistory.map(
+//     (job) =>
+//       new Paragraph({
+//         children: [
+//           new Paragraph({
+//             children: [new TextRun({ text: job.title })],
+//           }),
+//           new Paragraph({
+//             children: [new TextRun({ text: job.company })],
+//           }),
+//           new Paragraph({
+//             children: [
+//               new TextRun({
+//                 text: `${job.startDate} - ${
+//                   job.endDate ? job.endDate : "Present"
+//                 }`,
+//               }),
+//             ]
+//           }),
+//           ...createDutiesList(job.duties),
+//         ]
+//       })
+//   );
+// };
 
 // Create a new document with all sections
 const doc = new docx.Document({
@@ -227,10 +227,10 @@ const doc = new docx.Document({
           text: "Summary",
           heading: HeadingLevel.HEADING_1,
         }),
-        ...createJobHistory(testData1.WorkHistory)
+
       ]
     }
-  ]
+  ],
 });
 
 export default doc;
