@@ -1,4 +1,3 @@
-import React from 'react'
 import { template1 as doc } from '../resume-templates'
 import { saveAs } from 'file-saver'
 import { Packer } from 'docx';

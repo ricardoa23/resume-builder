@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 
 interface EducationLevelProps {
   handleNext: (level: string) => void;
 }
 
 const EducationLevel: React.FC<EducationLevelProps> = ({ handleNext }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    //FIXME: This may not be needed update delete if not used
-  };
 
   const handleClick = () => {
     const selectedLevel = (document.getElementById("educationLevel") as HTMLSelectElement).value;
@@ -17,7 +14,7 @@ const EducationLevel: React.FC<EducationLevelProps> = ({ handleNext }) => {
   return (
     <>
       <div>What's your highest level of education?</div>
-      <select name="educationLevel" id="educationLevel" onChange={handleChange}>
+      <select name="educationLevel" id="educationLevel">
         <option value="" selected hidden>
           Select your education level
         </option>
