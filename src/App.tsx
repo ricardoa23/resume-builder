@@ -3,7 +3,7 @@ import { GeneralInformation, LandingPage, FileTester } from './components'
 function App() {
   return (
     <>
-    <FileTester />
+    <LandingPage />
     </>
   )
 }
