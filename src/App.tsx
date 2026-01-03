@@ -1,9 +1,11 @@
 import './App.css'
-import { GeneralInformation, LandingPage, FileTester } from './components'
+import { LandingPage } from './components'
+import NavBar from "./components/NavBar.tsx";
 function App() {
   return (
     <>
-    <LandingPage />
+      <NavBar/>
+      <LandingPage />
     </>
   )
 }
